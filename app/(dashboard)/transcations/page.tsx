@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 
 
-import useGetTranscation from "@/features/transactions/api/use-get-transaction";
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
 import { useBulkDeleteTransactions } from './../../../features/transactions/api/use-bulk-delete-transactions';
 
@@ -19,12 +18,12 @@ import { Loader2, Plus } from "lucide-react";
 import { columns } from "./columns";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { transactions } from './../../../db/schema';
+import useGetTransactions from "@/features/transactions/api/use-get-transactions";
 
 
 export default function TransactionPage() {
   const newTransaction = useNewTransaction();
-  const getTransactionQuery = useGetTranscation();
+  const getTransactionQuery = useGetTransactions();
   const deleteTransactionQuery = useBulkDeleteTransactions();
 
   const transactionData = getTransactionQuery.data || [];
@@ -57,7 +56,7 @@ export default function TransactionPage() {
                 Add New
             </Button>
             </CardHeader>
-            <DataTable filterKey="name" columns={columns} data={transactionData} disabled={isDisabled} onDelete={(row)=>{
+            <DataTable filterKey="payee" columns={columns} data={transactionData} disabled={isDisabled} onDelete={(row)=>{
               const ids = row.map(r=>r.original.id);
               deleteTransactionQuery.mutate({ids});
             }}/>

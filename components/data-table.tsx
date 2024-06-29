@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
 
   const [Dialog,confirmDelete] =useConfirm( 'Are you sure?',
-    'Are you sure you want to delete category?');
+    'Are you sure you want to delete?');
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
     },
   })
 
-  console.log("filterKey:",filterKey);
+ 
   return (
     <div>
         <Dialog/>

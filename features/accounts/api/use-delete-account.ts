@@ -22,6 +22,8 @@ export function useDeleteAccount(id?:string) {
     onSuccess:()=>{
         queryClient.invalidateQueries({queryKey:["accoutns"]})
         queryClient.invalidateQueries({queryKey:["accoutns",{id}]})
+        queryClient.invalidateQueries({queryKey:["transactions"]})
+
         toast.success("Account Deleted");
     },
     onError:()=>{

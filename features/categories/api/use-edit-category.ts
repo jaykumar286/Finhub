@@ -24,6 +24,7 @@ export function useEditCategory(id?:string) {
     onSuccess:()=>{
         queryClient.invalidateQueries({queryKey:["categories"]})
         queryClient.invalidateQueries({queryKey:["categories",{id}]})
+        queryClient.invalidateQueries({queryKey:["transactions"]})
         toast.success("Category Updated");
     },
     onError:()=>{

@@ -77,7 +77,6 @@ const app = new Hono()
         return c.json({ error: "Not found" }, 400);
       }
 
-      console.log(data);
       return c.json({ data });
     }
   )
@@ -134,7 +133,6 @@ const app = new Hono()
         )
         .returning({ id: accounts.id });
 
-      console.log("Delete Data", deletedData);
 
       return c.json({
         data: deletedData,
